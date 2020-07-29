@@ -11,15 +11,15 @@ namespace PromotionEngineApp
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager();
-            productManager.InitProducts();
+            productManager.InitProducts(); // initializing the product list can be made dynamic
             OfferService offerService = new OfferService();
-            offerService.InitializeOffers();
+            offerService.InitializeOffers(); // initializing the offers can be made dynamic
             OrderManager orderManager = new OrderManager();
-            orderManager.InitOrders();
+            orderManager.InitOrders(); // initializing offers , can be done dynamic
             Offer offer = new Offer();
-            offer.InitOffer();
-            offerService.ApplyOffers(offer.Offers, orderManager.Orders, productManager.Products);
-            var total = orderManager.CalculateTotalPrice();
+            offer.InitOffer(); // initializing offers . can be modified for dynamic offers
+            offerService.ApplyOffers(offer.Offers, orderManager.Orders, productManager.Products); // applying available offers
+            var total = orderManager.CalculateTotalPrice(); // calculating total bill
         }
     }
 }

@@ -13,16 +13,16 @@ namespace PromotionEngineApp
             this.OfferMap = new Dictionary<string, Delegate>();
         }
 
+        // initializes all avaliable offers . new offers can be added here
         public void InitializeOffers()
         {
             this.OfferMap.Add("FixedPriceForAItems",new Func<string, int, double, List<Product>, List<Order>,bool>(FixedPriceForItems));
             this.OfferMap.Add("FixedPriceForBItems", new Func<string, int, double, List<Product>, List<Order>, bool>(FixedPriceForItems));
-
         }
 
         public new Dictionary<string, Delegate> OfferMap { get; set; }
 
-
+        // apply the fixed price  offer
         public bool FixedPriceForItems(string productName,int fixedQty,double fixedPrice, List<Product> products , List<Order> orders)
         {
             var product = products.FirstOrDefault(item => item.Name == productName);
@@ -47,17 +47,18 @@ namespace PromotionEngineApp
             return false;
         }
 
+        // applies available offers from the offer list
         public void ApplyOffers(List<string> offers, List<Order> orders, List<Product> products)
         {
             foreach(var offerName in offers)
             {
                 if (this.OfferMap.ContainsKey(offerName))
                 {
-                    if (offerName == "FixedPriceForAItems")
+                    if (offerName == "FixedPriceForAItems") // can be replaced by enums
                     {
                         OfferMap[offerName].DynamicInvoke("A", 2, 130, products, orders);
                     }
-                    if (offerName == "FixedPriceForBItems")
+                    if (offerName == "FixedPriceForBItems")  // can be replaced by enums
                     {
                         OfferMap[offerName].DynamicInvoke("B", 2, 130, products, orders);
                     }
