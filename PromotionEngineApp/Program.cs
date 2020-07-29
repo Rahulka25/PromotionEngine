@@ -10,6 +10,13 @@ namespace PromotionEngineApp
     {
         static void Main(string[] args)
         {
+            ProductManager productManager = new ProductManager();
+            productManager.InitProducts();
+            OfferService offerService = new OfferService();
+            offerService.InitializeOffers();
+            OrderManager orderManager = new OrderManager();
+            orderManager.InitOrders();
+
         }
     }
 }
