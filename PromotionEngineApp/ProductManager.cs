@@ -8,20 +8,20 @@ namespace PromotionEngineApp
 {
     class ProductManager
     {
-        private List<Product> products = null;
+        public List<Product> Products { get; set; }
         public ProductManager()
         {
-            this.products = new List<Product>();
+            this.Products = new List<Product>();
         }
 
         public void AddProduct(Product product)
         {
-            this.products.Add(product);
+            this.Products.Add(product);
         }
 
         public void InitProducts()
         {
-            this.products = new List<Product>
+            this.Products = new List<Product>
             {
                 new Product {Name = "A" , Price = 50 },
                 new Product {Name = "B" , Price = 30 },

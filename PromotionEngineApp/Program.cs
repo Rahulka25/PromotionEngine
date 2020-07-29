@@ -16,7 +16,10 @@ namespace PromotionEngineApp
             offerService.InitializeOffers();
             OrderManager orderManager = new OrderManager();
             orderManager.InitOrders();
-
+            Offer offer = new Offer();
+            offer.InitOffer();
+            offerService.ApplyOffers(offer.Offers, orderManager.Orders, productManager.Products);
+            var total = orderManager.CalculateTotalPrice();
         }
     }
 }
