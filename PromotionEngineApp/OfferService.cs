@@ -36,12 +36,13 @@ namespace PromotionEngineApp
                     var remainingitemCount = orderItem.Quantity - (Math.Truncate(totalFixedValue) * fixedQty);
                     var offerItemCount = (Math.Truncate(totalFixedValue) * fixedQty);
                     orderItem.Price = (remainingitemCount * product.Price) + (Math.Truncate(totalFixedValue) * fixedPrice);
+                    orderItem.IsOfferApplicable = true;
                 }
                 else
                 {
                     orderItem.Price = orderItem.Quantity * product.Price;
                 }
-                orders.Where(w => w.Name == productName).Select(w => { w.Price = orderItem.Price; return w; });
+                orders.Where(w => w.Name == productName).Select(w => { w = orderItem; return w; });
                 return true;
             }
             return false;
