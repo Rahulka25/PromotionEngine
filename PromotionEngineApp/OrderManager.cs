@@ -26,5 +26,15 @@ namespace PromotionEngineApp
             };
         }
 
+        public double CalculateTotalPrice()
+        {
+            double total = 0;
+            foreach(Order order in Orders)
+            {
+                total = total + order.Price;
+            }
+            return total;
+        }
+
     }
 }
